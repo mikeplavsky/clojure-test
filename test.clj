@@ -24,4 +24,11 @@
 (l 
   (do 
     (l "Wow")
-    (apply * '(1 2 3 4)))
+    (apply * '(1 2 3 4))))
+
+(l 
+  (let [a (rand-int 6) b (rand-int 6)]
+    (l (format "you've got a=%s b=%s" a b))
+    (+ a b)))
+
+
