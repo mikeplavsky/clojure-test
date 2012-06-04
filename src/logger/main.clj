@@ -2,17 +2,17 @@
 
 (defn print-logger [writer] 
   #(binding [*out* writer] 
-     (println %)))
+     (println (flatten %&))))
 
 (defn file-logger [file]
   #(with-open [f (io/writer file :append true)]
-     ((print-logger f) %)))
+     ((print-logger f) %&)))
 
 (def log->file (file-logger "log.txt"))
 
 (defn multi-logger [& logger-fns]
   #(doseq [f logger-fns]
-     (f %)))
+     (f %&)))
 
 (def log (multi-logger (print-logger *out*) log->file))
 
