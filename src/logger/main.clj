@@ -10,5 +10,10 @@
 
 (def log->file (file-logger "log.txt"))
 
+(defn multi-logger [& logger-fns]
+  #(doseq [f logger-fns]
+     (f %)))
+
+(def log (multi-logger (print-logger *out*) log->file))
 
 
